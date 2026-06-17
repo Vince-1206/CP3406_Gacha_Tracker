@@ -68,6 +68,31 @@ class MainActivity : ComponentActivity() {
                         )
 
                         Text(text = "(empty)")
+
+                        Spacer(modifier = Modifier.height(32.dp))
+
+                        Text(
+                            text = "Settings",
+                            style = MaterialTheme.typography.titleLarge
+                        )
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        Text(text = "Banner Type: Beginner Banner")
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        Text(text = "Show Character Images: ON")
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        Text(text = "High Rate Demo: OFF")
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Button(onClick = {}) {
+                            Text("Reset Pull History")
+                        }
                     }
                 }
             }
