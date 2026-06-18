@@ -96,22 +96,42 @@ class GachaViewModel : ViewModel() {
     }
 
     private fun getRandomCharacter(): GachaCharacter {
+        val chance = Random.nextInt(100)
+
         val rarity = if (pityCounter.value >= 90) {
             5
         } else {
-            val chance = Random.nextInt(100)
-
-            if (highRateDemo.value) {
-                when {
-                    chance < 20 -> 5
-                    chance < 50 -> 4
-                    else -> 3
+            when (selectedBanner.value) {
+                "Beginner Banner" -> {
+                    when {
+                        chance < 3 -> 5
+                        chance < 18 -> 4
+                        else -> 3
+                    }
                 }
-            } else {
-                when {
-                    chance < 1 -> 5
-                    chance < 11 -> 4
-                    else -> 3
+
+                "Event Banner" -> {
+                    when {
+                        chance < 5 -> 5
+                        chance < 25 -> 4
+                        else -> 3
+                    }
+                }
+
+                "Standard Banner" -> {
+                    when {
+                        chance < 1 -> 5
+                        chance < 11 -> 4
+                        else -> 3
+                    }
+                }
+
+                else -> {
+                    when {
+                        chance < 1 -> 5
+                        chance < 11 -> 4
+                        else -> 3
+                    }
                 }
             }
         }
