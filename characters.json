@@ -3,30 +3,36 @@
     "name": "Astra",
     "rarity": 5,
     "element": "Fire"
+    "imageUrl": "https://via.placeholder.com/150"
   },
   {
     "name": "Nova",
     "rarity": 5,
     "element": "Lightning"
+    "imageUrl": "https://via.placeholder.com/150"
   },
   {
     "name": "Luna",
     "rarity": 4,
     "element": "Ice"
+    "imageUrl": "https://via.placeholder.com/150"
   },
   {
     "name": "Maple",
     "rarity": 4,
     "element": "Water"
+    "imageUrl": "https://via.placeholder.com/150"
   },
   {
     "name": "Milo",
     "rarity": 3,
     "element": "Wind"
+    "imageUrl": "https://via.placeholder.com/150"
   },
   {
     "name": "Kai",
     "rarity": 3,
     "element": "Earth"
+    "imageUrl": "https://via.placeholder.com/150"
   }
 ]
