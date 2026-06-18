@@ -20,6 +20,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -118,8 +120,10 @@ fun GachaScreen(
         if (viewModel.pullHistory.isEmpty()) {
             Text(text = "(empty)")
         } else {
-            viewModel.pullHistory.take(5).forEach { result ->
-                Text(text = "- $result")
+            LazyColumn {
+                items(viewModel.pullHistory) { result ->
+                    Text(text = "- $result")
+                }
             }
         }
     }
