@@ -1,17 +1,21 @@
 package com.example.cp3406_gacha_tracker
 
+import retrofit2.Call
+
 class GachaRepository {
 
-    private val characters = listOf(
-        GachaCharacter("Astra", 5, "Fire"),
-        GachaCharacter("Luna", 4, "Ice"),
-        GachaCharacter("Milo", 3, "Wind"),
-        GachaCharacter("Nova", 5, "Lightning"),
-        GachaCharacter("Rin", 4, "Water"),
-        GachaCharacter("Kai", 3, "Earth")
-    )
+    fun getCharactersFromApi(): Call<List<GachaCharacter>> {
+        return RetrofitInstance.api.getCharacters()
+    }
 
-    fun getCharacters(): List<GachaCharacter> {
-        return characters
+    fun getFallbackCharacters(): List<GachaCharacter> {
+        return listOf(
+            GachaCharacter("Astra", 5, "Fire"),
+            GachaCharacter("Nova", 5, "Lightning"),
+            GachaCharacter("Luna", 4, "Ice"),
+            GachaCharacter("Rin", 4, "Water"),
+            GachaCharacter("Milo", 3, "Wind"),
+            GachaCharacter("Kai", 3, "Earth")
+        )
     }
 }

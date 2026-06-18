@@ -4,11 +4,37 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import kotlin.random.Random
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class GachaViewModel : ViewModel() {
 
+    init {
+        loadCharactersFromApi()
+    }
+    private fun loadCharactersFromApi() {
+        repository.getCharactersFromApi().enqueue(object : Callback<List<GachaCharacter>> {
+            override fun onResponse(
+                call: Call<List<GachaCharacter>>,
+                response: Response<List<GachaCharacter>>
+            ) {
+                if (response.isSuccessful && response.body() != null) {
+                    characters = response.body()!!
+                }
+            }
+
+            override fun onFailure(
+                call: Call<List<GachaCharacter>>,
+                t: Throwable
+            ) {
+                // fallback already loaded
+            }
+        })
+    }
+
     private val repository = GachaRepository()
-    private val characters = repository.getCharacters()
+    private var characters = repository.getFallbackCharacters()
 
     var latestResult = mutableStateOf("No pull yet")
     var pityCounter = mutableStateOf(0)
