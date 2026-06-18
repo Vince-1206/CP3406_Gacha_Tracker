@@ -10,12 +10,12 @@ class GachaRepository {
 
     fun getFallbackCharacters(): List<GachaCharacter> {
         return listOf(
-            GachaCharacter("Astra", 5, "Fire"),
-            GachaCharacter("Nova", 5, "Lightning"),
-            GachaCharacter("Luna", 4, "Ice"),
-            GachaCharacter("Rin", 4, "Water"),
-            GachaCharacter("Milo", 3, "Wind"),
-            GachaCharacter("Kai", 3, "Earth")
+            GachaCharacter("Astra", 5, "Fire", "https://via.placeholder.com/150"),
+            GachaCharacter("Nova", 5, "Lightning", "https://via.placeholder.com/150"),
+            GachaCharacter("Luna", 4, "Ice", "https://via.placeholder.com/150"),
+            GachaCharacter("Maple", 4, "Water", "https://via.placeholder.com/150"),
+            GachaCharacter("Milo", 3, "Wind", "https://via.placeholder.com/150"),
+            GachaCharacter("Kai", 3, "Earth", "https://via.placeholder.com/150")
         )
     }
 }
