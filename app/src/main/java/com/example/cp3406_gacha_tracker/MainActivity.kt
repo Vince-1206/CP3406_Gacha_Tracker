@@ -22,6 +22,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import coil.compose.AsyncImage
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +78,7 @@ fun GachaScreen(
     Column(
         modifier = modifier
             .padding(16.dp)
+            .verticalScroll(rememberScrollState())
     ) {
         Text(
             text = "Gacha Pull Simulator & Tracker",
@@ -166,13 +169,8 @@ fun GachaScreen(
         if (viewModel.pullHistory.isEmpty()) {
             Text(text = "(empty)")
         } else {
-            LazyColumn(
-                modifier = Modifier
-                    .weight(1f)
-            ) {
-                items(viewModel.pullHistory) { result ->
-                    Text(text = "- $result")
-                }
+            viewModel.pullHistory.forEach { result ->
+                Text(text = "- $result")
             }
         }
     }
