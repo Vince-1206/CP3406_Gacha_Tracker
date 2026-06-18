@@ -10,12 +10,18 @@ import retrofit2.Response
 
 class GachaViewModel : ViewModel() {
 
+    private val repository = GachaRepository()
+    private var characters = repository.getFallbackCharacters()
+
+    var latestResult = mutableStateOf("No pull yet")
+    var pityCounter = mutableStateOf(0)
+    var totalPulls = mutableStateOf(0)
+    var highRateDemo = mutableStateOf(false)
+
+    val pullHistory = mutableStateListOf<String>()
+
     init {
-        try {
-            loadCharactersFromApi()
-        } catch (e: Exception) {
-            // Use fallback characters if API setup fails
-        }
+        loadCharactersFromApi()
     }
     private fun loadCharactersFromApi() {
         repository.getCharactersFromApi().enqueue(object : Callback<List<GachaCharacter>> {
@@ -36,17 +42,6 @@ class GachaViewModel : ViewModel() {
             }
         })
     }
-
-    private val repository = GachaRepository()
-    private var characters = repository.getFallbackCharacters()
-
-    var latestResult = mutableStateOf("No pull yet")
-    var pityCounter = mutableStateOf(0)
-    var totalPulls = mutableStateOf(0)
-
-    var highRateDemo = mutableStateOf(false)
-
-    val pullHistory = mutableStateListOf<String>()
 
     fun pullOne() {
         totalPulls.value += 1
