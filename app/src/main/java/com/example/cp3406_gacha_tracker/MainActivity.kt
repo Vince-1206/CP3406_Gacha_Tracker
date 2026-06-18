@@ -118,7 +118,10 @@ fun GachaScreen(
         if (viewModel.pullHistory.isEmpty()) {
             Text(text = "(empty)")
         } else {
-            LazyColumn {
+            LazyColumn(
+                modifier = Modifier
+                    .weight(1f)
+            ) {
                 items(viewModel.pullHistory) { result ->
                     Text(text = "- $result")
                 }
