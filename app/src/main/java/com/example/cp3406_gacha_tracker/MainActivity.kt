@@ -91,7 +91,7 @@ fun GachaScreen(
 
             Spacer(modifier = Modifier.width(8.dp))
 
-            Button(onClick = {}) {
+            Button(onClick = { viewModel.pullTen() }) {
                 Text("Pull 10")
             }
         }

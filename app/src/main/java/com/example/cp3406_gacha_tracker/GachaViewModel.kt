@@ -31,6 +31,11 @@ class GachaViewModel : ViewModel() {
             pityCounter.value = 0
         }
     }
+    fun pullTen() {
+        repeat(10) {
+            pullOne()
+        }
+    }
 
     private fun getRandomCharacter(): GachaCharacter {
         val rarity = if (pityCounter.value >= 90) {
