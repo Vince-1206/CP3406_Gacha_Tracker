@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Astra",
+    "rarity": 5,
+    "element": "Fire"
+  },
+  {
+    "name": "Nova",
+    "rarity": 5,
+    "element": "Lightning"
+  },
+  {
+    "name": "Luna",
+    "rarity": 4,
+    "element": "Ice"
+  },
+  {
+    "name": "Maple",
+    "rarity": 4,
+    "element": "Water"
+  },
+  {
+    "name": "Milo",
+    "rarity": 3,
+    "element": "Wind"
+  },
+  {
+    "name": "Kai",
+    "rarity": 3,
+    "element": "Earth"
+  }
+]
