@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +27,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CP3406_Gacha_TrackerTheme {
+                val gachaViewModel: GachaViewModel = viewModel()
                 var selectedTab by remember { mutableStateOf(0) }
 
                 Scaffold(
@@ -49,7 +51,10 @@ class MainActivity : ComponentActivity() {
                     }
                 ) { innerPadding ->
                     if (selectedTab == 0) {
-                        GachaScreen(modifier = Modifier.padding(innerPadding))
+                        GachaScreen(
+                            modifier = Modifier.padding(innerPadding),
+                            viewModel = gachaViewModel
+                        )
                     } else {
                         SettingsScreen(modifier = Modifier.padding(innerPadding))
                     }
@@ -60,7 +65,10 @@ class MainActivity : ComponentActivity() {
             }
 
 @Composable
-fun GachaScreen(modifier: Modifier = Modifier) {
+fun GachaScreen(
+    modifier: Modifier = Modifier,
+    viewModel: GachaViewModel
+) {
     Column(
         modifier = modifier
             .padding(16.dp)
@@ -77,7 +85,7 @@ fun GachaScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Row {
-            Button(onClick = {}) {
+            Button(onClick = {viewModel.pullOne()}) {
                 Text("Pull 1")
             }
 
@@ -90,12 +98,12 @@ fun GachaScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(text = "Latest Result: No pull yet")
+        Text(text = "Latest Result: ${viewModel.latestResult.value}")
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text(text = "Pity Counter: 0 / 90")
-        Text(text = "Total Pulls: 0")
+        Text(text = "Pity Counter: ${viewModel.pityCounter.value} / 90")
+        Text(text = "Total Pulls: ${viewModel.totalPulls.value}")
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -104,7 +112,13 @@ fun GachaScreen(modifier: Modifier = Modifier) {
             style = MaterialTheme.typography.titleMedium
         )
 
-        Text(text = "(empty)")
+        if (viewModel.pullHistory.isEmpty()) {
+            Text(text = "(empty)")
+        } else {
+            viewModel.pullHistory.take(5).forEach { result ->
+                Text(text = "- $result")
+            }
+        }
     }
 }
 
