@@ -103,7 +103,31 @@ fun GachaScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(text = "Latest Result: ${viewModel.latestResult.value}")
+        Card(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(
+                    text = "Latest Result",
+                    style = MaterialTheme.typography.titleMedium
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Text(text = viewModel.latestResult.value)
+
+                if (viewModel.showCharacterImages.value && viewModel.latestImageUrl.value.isNotEmpty()) {
+                    AsyncImage(
+                        model = viewModel.latestImageUrl.value,
+                        contentDescription = "Character Image",
+                        modifier = Modifier.size(150.dp)
+                    )
+                }
+            }
+        }
+
         if (viewModel.showCharacterImages.value && viewModel.latestImageUrl.value.isNotEmpty()) {
             AsyncImage(
                 model = viewModel.latestImageUrl.value,
@@ -114,8 +138,23 @@ fun GachaScreen(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text(text = "Pity Counter: ${viewModel.pityCounter.value} / 90")
-        Text(text = "Total Pulls: ${viewModel.totalPulls.value}")
+        Card(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(
+                    text = "Pull Statistics",
+                    style = MaterialTheme.typography.titleMedium
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Text(text = "Pity Counter: ${viewModel.pityCounter.value} / 90")
+                Text(text = "Total Pulls: ${viewModel.totalPulls.value}")
+            }
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
