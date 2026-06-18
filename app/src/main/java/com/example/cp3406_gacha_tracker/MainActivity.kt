@@ -104,11 +104,13 @@ fun GachaScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(text = "Latest Result: ${viewModel.latestResult.value}")
-        AsyncImage(
-            model = viewModel.latestImageUrl.value,
-            contentDescription = "Character image",
-            modifier = Modifier.size(120.dp)
-        )
+        if (viewModel.showCharacterImages.value && viewModel.latestImageUrl.value.isNotEmpty()) {
+            AsyncImage(
+                model = viewModel.latestImageUrl.value,
+                contentDescription = "Character Image",
+                modifier = Modifier.size(150.dp)
+            )
+        }
 
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -157,7 +159,16 @@ fun SettingsScreen(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text(text = "Show Character Images: ON")
+        Row {
+            Text(text = "Show Character Images")
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Switch(
+                checked = viewModel.showCharacterImages.value,
+                onCheckedChange = { viewModel.toggleShowCharacterImages() }
+            )
+        }
 
         Spacer(modifier = Modifier.height(8.dp))
 

@@ -24,6 +24,8 @@ class GachaViewModel : ViewModel() {
 
     var latestImageUrl = mutableStateOf("")
 
+    var showCharacterImages = mutableStateOf(true)
+
     init {
         loadCharactersFromApi()
     }
@@ -83,6 +85,9 @@ class GachaViewModel : ViewModel() {
         pityCounter.value = 0
         totalPulls.value = 0
         pullHistory.clear()
+    }
+    fun toggleShowCharacterImages() {
+        showCharacterImages.value = !showCharacterImages.value
     }
 
     private fun getRandomCharacter(): GachaCharacter {
