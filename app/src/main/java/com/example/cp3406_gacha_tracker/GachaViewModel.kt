@@ -22,6 +22,8 @@ class GachaViewModel : ViewModel() {
 
     var apiStatus = mutableStateOf("Loading character data...")
 
+    var latestImageUrl = mutableStateOf("")
+
     init {
         loadCharactersFromApi()
     }
@@ -55,6 +57,7 @@ class GachaViewModel : ViewModel() {
         pityCounter.value += 1
 
         val selectedCharacter = getRandomCharacter()
+        latestImageUrl.value = selectedCharacter.imageUrl
 
         latestResult.value =
             "${selectedCharacter.name} - ${selectedCharacter.rarity}★ - ${selectedCharacter.element}"

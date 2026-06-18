@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import coil.compose.AsyncImage
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,6 +104,11 @@ fun GachaScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(text = "Latest Result: ${viewModel.latestResult.value}")
+        AsyncImage(
+            model = viewModel.latestImageUrl.value,
+            contentDescription = "Character image",
+            modifier = Modifier.size(120.dp)
+        )
 
         Spacer(modifier = Modifier.height(8.dp))
 
