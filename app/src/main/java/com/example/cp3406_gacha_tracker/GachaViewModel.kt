@@ -20,6 +20,8 @@ class GachaViewModel : ViewModel() {
 
     val pullHistory = mutableStateListOf<String>()
 
+    var apiStatus = mutableStateOf("Loading character data...")
+
     init {
         loadCharactersFromApi()
     }
@@ -31,13 +33,18 @@ class GachaViewModel : ViewModel() {
             ) {
                 if (response.isSuccessful && response.body() != null) {
                     characters = response.body()!!
+                    apiStatus.value = "Character data loaded from GitHub API"
+                } else {
+                    apiStatus.value = "Using fallback character data"
                 }
             }
 
             override fun onFailure(
                 call: Call<List<GachaCharacter>>,
                 t: Throwable
+
             ) {
+                apiStatus.value = "Using fallback character data"
                 // fallback already loaded
             }
         })

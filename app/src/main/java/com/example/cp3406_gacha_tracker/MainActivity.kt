@@ -84,6 +84,7 @@ fun GachaScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(text = "Current Banner: Beginner Banner")
+        Text(text = viewModel.apiStatus.value)
 
         Spacer(modifier = Modifier.height(16.dp))
 
