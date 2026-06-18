@@ -11,7 +11,11 @@ import retrofit2.Response
 class GachaViewModel : ViewModel() {
 
     init {
-        loadCharactersFromApi()
+        try {
+            loadCharactersFromApi()
+        } catch (e: Exception) {
+            // Use fallback characters if API setup fails
+        }
     }
     private fun loadCharactersFromApi() {
         repository.getCharactersFromApi().enqueue(object : Callback<List<GachaCharacter>> {
