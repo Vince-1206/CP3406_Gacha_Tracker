@@ -56,7 +56,10 @@ class MainActivity : ComponentActivity() {
                             viewModel = gachaViewModel
                         )
                     } else {
-                        SettingsScreen(modifier = Modifier.padding(innerPadding))
+                        SettingsScreen(
+                            modifier = Modifier.padding(innerPadding),
+                            viewModel = gachaViewModel
+                        )
                     }
                 }
                         }
@@ -123,7 +126,10 @@ fun GachaScreen(
 }
 
 @Composable
-fun SettingsScreen(modifier: Modifier = Modifier) {
+fun SettingsScreen(
+    modifier: Modifier = Modifier,
+    viewModel: GachaViewModel
+) {
     Column(
         modifier = modifier
             .padding(16.dp)
@@ -143,11 +149,20 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text(text = "High Rate Demo: OFF")
+        Row {
+            Text(text = "High Rate Demo")
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Switch(
+                checked = viewModel.highRateDemo.value,
+                onCheckedChange = { viewModel.toggleHighRateDemo() }
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(onClick = {}) {
+        Button(onClick = {viewModel.resetHistory() }) {
             Text("Reset Pull History")
         }
     }

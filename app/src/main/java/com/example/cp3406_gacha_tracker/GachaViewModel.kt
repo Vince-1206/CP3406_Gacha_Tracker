@@ -14,6 +14,8 @@ class GachaViewModel : ViewModel() {
     var pityCounter = mutableStateOf(0)
     var totalPulls = mutableStateOf(0)
 
+    var highRateDemo = mutableStateOf(false)
+
     val pullHistory = mutableStateListOf<String>()
 
     fun pullOne() {
@@ -37,15 +39,35 @@ class GachaViewModel : ViewModel() {
         }
     }
 
+    fun toggleHighRateDemo() {
+        highRateDemo.value = !highRateDemo.value
+    }
+
+    fun resetHistory() {
+        latestResult.value = "No pull yet"
+        pityCounter.value = 0
+        totalPulls.value = 0
+        pullHistory.clear()
+    }
+
     private fun getRandomCharacter(): GachaCharacter {
         val rarity = if (pityCounter.value >= 90) {
             5
         } else {
             val chance = Random.nextInt(100)
-            when {
-                chance < 1 -> 5
-                chance < 11 -> 4
-                else -> 3
+
+            if (highRateDemo.value) {
+                when {
+                    chance < 20 -> 5
+                    chance < 50 -> 4
+                    else -> 3
+                }
+            } else {
+                when {
+                    chance < 1 -> 5
+                    chance < 11 -> 4
+                    else -> 3
+                }
             }
         }
 
