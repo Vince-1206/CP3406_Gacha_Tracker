@@ -84,7 +84,7 @@ fun GachaScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(text = "Current Banner: Beginner Banner")
+        Text(text = "Current Banner: ${viewModel.selectedBanner.value}")
         Text(text = viewModel.apiStatus.value)
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -148,14 +148,29 @@ fun SettingsScreen(
         modifier = modifier
             .padding(16.dp)
     ) {
-        Text(
-            text = "Settings",
-            style = MaterialTheme.typography.headlineMedium
-        )
+        Text(text = "Banner Type")
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(onClick = { viewModel.changeBanner("Beginner Banner") }) {
+            Text("Beginner Banner")
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(onClick = { viewModel.changeBanner("Event Banner") }) {
+            Text("Event Banner")
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(onClick = { viewModel.changeBanner("Standard Banner") }) {
+            Text("Standard Banner")
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(text = "Banner Type: Beginner Banner")
+
 
         Spacer(modifier = Modifier.height(8.dp))
 

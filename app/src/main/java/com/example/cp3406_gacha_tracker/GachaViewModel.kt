@@ -26,6 +26,8 @@ class GachaViewModel : ViewModel() {
 
     var showCharacterImages = mutableStateOf(true)
 
+    var selectedBanner = mutableStateOf("Beginner Banner")
+
     init {
         loadCharactersFromApi()
     }
@@ -88,6 +90,9 @@ class GachaViewModel : ViewModel() {
     }
     fun toggleShowCharacterImages() {
         showCharacterImages.value = !showCharacterImages.value
+    }
+    fun changeBanner(banner: String) {
+        selectedBanner.value = banner
     }
 
     private fun getRandomCharacter(): GachaCharacter {
