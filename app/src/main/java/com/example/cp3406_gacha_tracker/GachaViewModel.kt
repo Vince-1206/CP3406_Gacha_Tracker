@@ -101,6 +101,7 @@ class GachaViewModel : ViewModel() {
             }
         }
 
+
         return characters
             .filter { it.rarity == rarity }
             .random()
