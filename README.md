@@ -164,6 +164,14 @@ git clone https://github.com/Vince-1206/CP3406_Gacha_Tracker.git
 
 ---
 
+## Screenshots
+
+### Main Screen
+![Main Screen](Photo/Main_Screen.png)
+
+### Settings Screen
+![Settings Screen](Photo/Setting_screen.png)
+
 ## Future Improvements
 
 * Add summon animation
