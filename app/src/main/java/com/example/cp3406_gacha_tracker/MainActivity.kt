@@ -19,8 +19,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import coil.compose.AsyncImage
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
